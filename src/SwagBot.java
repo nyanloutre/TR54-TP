@@ -59,15 +59,11 @@ public class SwagBot{
         this.motorB.forward();
     }
 
-    public void speed(boolean side){
-        if(side){
-            this.motorA.forward();
-            this.motorB.stop();
-        }
-        else {
-            this.motorB.forward();
-            this.motorA.stop();
-        }
+    public void speed(int speed_left, int speed_right){
+        this.motorA.setSpeed(speed_left);
+        this.motorA.forward();
+        this.motorB.setSpeed(speed_right);
+        this.motorB.forward();
     }
 
     public float distance() {
