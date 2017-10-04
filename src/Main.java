@@ -8,7 +8,7 @@ public class Main {
         SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3, SensorPort.S1);
 
         int base_robot_speed = 300;
-        int agressivity = 8;
+        int agressivity = 6;
 
         int return_color;
         double ticks = 0;
