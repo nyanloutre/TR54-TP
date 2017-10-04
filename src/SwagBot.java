@@ -48,6 +48,15 @@ public class SwagBot{
         this.motorB.forward();
     }
 
+    public void speed(boolean side, int speed){
+        if(side){
+            this.motorA.setSpeed(speed);
+        }
+        else {
+            this.motorB.setSpeed(speed);
+        }
+    }
+
     public float distance() {
         RangeFinder sonar = new RangeFinderAdapter(this.ultrasonic);
         return(sonar.getRange());
