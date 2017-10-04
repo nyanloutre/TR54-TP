@@ -5,9 +5,9 @@ import lejos.utility.Delay;
 
 public class Main {
     public static void main(String[] args){
-        SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3);
+        SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3, SensorPort.S1);
         int return_color;
-        while (true){
+        while (!robot.isPush()){
             return_color = robot.color();
 
             if(return_color == Color.BLACK){

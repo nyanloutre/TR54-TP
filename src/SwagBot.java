@@ -1,6 +1,8 @@
+import lejos.hardware.Button;
 import lejos.hardware.motor.EV3LargeRegulatedMotor;
 import lejos.hardware.port.Port;
 import lejos.hardware.sensor.EV3ColorSensor;
+import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorMode;
 import lejos.robotics.*;
@@ -11,15 +13,17 @@ public class SwagBot{
     private RegulatedMotor motorA;
     private RegulatedMotor motorB;
     private EV3UltrasonicSensor ultrasonic;
-    private EV3ColorSensor color_sensor;
     private SampleProvider ultrasonic_provider;
+    private EV3ColorSensor color_sensor;
+    private EV3TouchSensor button_sensor;
 
-    public SwagBot(Port port_motor_A, Port port_motor_B, Port port_ultrasonic, Port port_color_sensor) {
+    public SwagBot(Port port_motor_A, Port port_motor_B, Port port_ultrasonic, Port port_color_sensor, Port port_button_sensor) {
         this.motorA = new EV3LargeRegulatedMotor(port_motor_A);
         this.motorB = new EV3LargeRegulatedMotor(port_motor_B);
         this.ultrasonic = new EV3UltrasonicSensor(port_ultrasonic);
         this.ultrasonic_provider = this.ultrasonic.getDistanceMode();
         this.color_sensor = new EV3ColorSensor(port_color_sensor);
+        this.button_sensor = new EV3TouchSensor(port_button_sensor);
     }
 
     protected void finalize() throws Throwable {
@@ -29,6 +33,14 @@ public class SwagBot{
         this.motorB.close();
         this.ultrasonic.close();
         this.color_sensor.close();
+    }
+
+    public boolean isPush(){
+        SensorMode touch = button_sensor.getTouchMode();
+        float[] sample = new float[touch.sampleSize()];
+        touch.fetchSample(sample,0);
+        int is_touch = (int)sample[0];
+        return (is_touch == 1);
     }
 
     public void stop() {
