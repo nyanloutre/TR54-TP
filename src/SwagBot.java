@@ -60,23 +60,12 @@ public class SwagBot{
         return(samples[0]);
     }
 
-    public String color() {
+    public int color() {
         SensorMode color_mode = this.color_sensor.getColorIDMode();
         float [] color_sample = new float[color_mode.sampleSize()];
         this.color_sensor.setFloodlight(true);
         color_mode.fetchSample(color_sample, 0);
         int colorId = (int)color_sample[0];
-        String colorName = "";
-        switch(colorId){
-            case Color.NONE: colorName = "NONE"; break;
-            case Color.BLACK: colorName = "BLACK"; break;
-            case Color.BLUE: colorName = "BLUE"; break;
-            case Color.GREEN: colorName = "GREEN"; break;
-            case Color.YELLOW: colorName = "YELLOW"; break;
-            case Color.RED: colorName = "RED"; break;
-            case Color.WHITE: colorName = "WHITE"; break;
-            case Color.BROWN: colorName = "BROWN"; break;
-        }
-        return colorName;
+        return colorId;
     }
 }
