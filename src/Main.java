@@ -7,19 +7,18 @@ public class Main {
     public static void main(String[] args){
         SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3);
         int return_color;
-        boolean forward = false;
         while (true){
             return_color = robot.color();
+
             if(return_color == Color.BLACK){
-                if (!forward){
-                    robot.forward();
-                    forward = true;
-                }
+                System.out.println("BLACK");
+                robot.speed(true);
             }else{
-                robot.stop();
-                robot.rotate((float) 0.1);
-                forward = false;
+                System.out.println("OTHER");
+                //robot.speed(true);
+                robot.speed(false);
             }
+            //Delay.msDelay(1000);
         }
 
 //        for (int i = 0; i < 100; i++) {

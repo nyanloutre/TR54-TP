@@ -38,7 +38,6 @@ public class SwagBot{
 
     public void rotate(float angle) {
         int deg_angle = (int)((180.0/Math.PI)*angle) * 2;
-        System.out.println(deg_angle);
         this.motorA.rotate(deg_angle, true);
         this.motorB.rotate(-deg_angle);
     }
@@ -48,12 +47,14 @@ public class SwagBot{
         this.motorB.forward();
     }
 
-    public void speed(boolean side, int speed){
+    public void speed(boolean side){
         if(side){
-            this.motorA.setSpeed(speed);
+            this.motorA.forward();
+            this.motorB.stop();
         }
         else {
-            this.motorB.setSpeed(speed);
+            this.motorB.forward();
+            this.motorA.stop();
         }
     }
 
