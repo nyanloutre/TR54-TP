@@ -24,7 +24,7 @@ public class Follower {
     public void a_un_point(int a, double distance) {
         robot.forward();
         while(!robot.isPush()) {
-            int vitesse = (int)(Math.max(Math.min(50, a*(robot.distance()-distance)) , 0) * 10);
+            int vitesse = (int)(Math.max(Math.min(0.5, a*(robot.distance()-distance)) , 0) * 1000);
             robot.speed(vitesse, vitesse);
         }
     }
