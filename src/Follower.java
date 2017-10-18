@@ -41,7 +41,7 @@ public class Follower {
     public void a_un_point(int a, double distance) {
         robot.forward();
         while(!robot.isPush()) {
-            int vitesse = (int)(Math.max(Math.min(0.5, a*(robot.distance()-distance)) , 0) * 1000);
+            int vitesse = (int)(Math.max(Math.min(0.5, a*(robot.distance()-distance)) , 0) * robot.getMaxSpeed());
             robot.speed(vitesse, vitesse);
         }
     }
@@ -54,7 +54,7 @@ public class Follower {
             double vitesse_pourcentage = Math.min(Math.max(2.5*(mesure_distance-0.20), Math.min(Math.max(a*(mesure_distance-distance), 0) , derniere_vitesse)) , 0.5);
             System.out.println(mesure_distance);
             System.out.println(vitesse_pourcentage);
-            int vitesse = (int)(vitesse_pourcentage * 1000);
+            int vitesse = (int)(vitesse_pourcentage * robot.getMaxSpeed());
             robot.speed(vitesse, vitesse);
             derniere_vitesse = vitesse_pourcentage;
             this.ecrire_statistiques(mesure_distance, vitesse);
