@@ -28,7 +28,7 @@ public class Follower {
     }
 
     public void tout_ou_rien() {
-        robot.speed(500, 500);
+        robot.speed((int) (0.5 * robot.getMaxSpeed()), (int) (0.5 * robot.getMaxSpeed()));
         while (!robot.isPush()) {
             if (robot.distance() > 0.15) {
                 robot.forward();
