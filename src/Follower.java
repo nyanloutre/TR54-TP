@@ -2,12 +2,25 @@ import lejos.hardware.Button;
 import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.Port;
 import lejos.hardware.port.SensorPort;
+import lejos.utility.Delay;
 
 public class Follower {
 
-    public static void main(String[] args) {
-        SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S1);
-        System.out.println("Obstacle à : " + robot.distance());
+    private SwagBot robot;
+
+    public Follower(){
+        this.robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S1);
+    }
+
+    public void toutourien(){
+        robot.speed(500,500);
+        while (!robot.isPush()) {
+            if (robot.distance() > 0.15){
+                robot.forward();
+            }else{
+                robot.stop();
+            }
+        }
     }
 }
 
