@@ -2,12 +2,29 @@ import lejos.hardware.port.MotorPort;
 import lejos.hardware.port.SensorPort;
 import lejos.utility.Delay;
 
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 public class Follower {
 
     private SwagBot robot;
+    private PrintWriter file;
 
     public Follower(){
         this.robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S1);
+        try {
+            file = new PrintWriter("follower.csv", "UTF-8");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        file.println("Distance,Vitesse");
+    }
+
+    public void ecrire_statistiques(double distance, double vitesse) {
+        file.println(distance + "," + vitesse);
     }
 
     public void tout_ou_rien() {
@@ -40,8 +57,10 @@ public class Follower {
             int vitesse = (int)(vitesse_pourcentage * 1000);
             robot.speed(vitesse, vitesse);
             derniere_vitesse = vitesse_pourcentage;
+            this.ecrire_statistiques(mesure_distance, vitesse);
             Delay.msDelay(delai);
         }
+        file.close();
     }
 }
 

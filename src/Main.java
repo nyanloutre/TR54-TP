@@ -1,7 +1,8 @@
 public class Main {
     public static void main(String[] args){
         Follower follower = new Follower();
-        follower.a_deux_point(1000, 0.15, 500);
+        follower.a_deux_point(1000, 0.15, 100);
+
         //SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3, SensorPort.S1);
 
         //robot.line_follower_v1();
