@@ -23,7 +23,7 @@ public class Follower {
         file.println("Distance,Vitesse");
     }
 
-    public void ecrire_statistiques(double distance, double vitesse) {
+    public void ecrire_statistiques(double distance, int vitesse) {
         file.println(distance + "," + vitesse);
     }
 
