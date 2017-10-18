@@ -31,6 +31,15 @@ public class SwagBot{
         this.button_sensor = new EV3TouchSensor(port_button_sensor);
     }
 
+    public SwagBot(Port port_motor_A, Port port_motor_B, Port port_ultrasonic, Port port_button_sensor) {
+        this.motorA = new EV3LargeRegulatedMotor(port_motor_A);
+        this.motorB = new EV3LargeRegulatedMotor(port_motor_B);
+        this.ultrasonic = new EV3UltrasonicSensor(port_ultrasonic);
+        this.ultrasonic_provider = this.ultrasonic.getDistanceMode();
+        this.button_sensor = new EV3TouchSensor(port_button_sensor);
+    }
+
+
     public SwagBot(Port port_motor_A, Port port_motor_B) {
         this.motorA = new EV3LargeRegulatedMotor(port_motor_A);
         this.motorB = new EV3LargeRegulatedMotor(port_motor_B);
