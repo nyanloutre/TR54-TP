@@ -39,11 +39,14 @@ public class Follower {
         }
     }
 
-    public void a_un_point(int a, double distance) {
+    public void a_un_point(int a, double distance, long delai) {
         robot.forward();
         while(!robot.isPush()) {
-            int vitesse = (int)(Math.max(Math.min(0.5, a*(robot.distance()-distance)) , 0) * robot.getMaxSpeed());
+            float mesure_distance = robot.distance();
+            int vitesse = (int)(Math.max(Math.min(0.5, a*(mesure_distance-distance)) , 0) * robot.getMaxSpeed());
             robot.speed(vitesse, vitesse);
+            this.ecrire_statistiques(mesure_distance, vitesse);
+            Delay.msDelay(delai);
         }
     }
 

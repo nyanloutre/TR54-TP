@@ -5,7 +5,7 @@ import lejos.hardware.port.SensorPort;
 public class Main {
     public static void main(String[] args){
         Follower follower = new Follower();
-        follower.a_deux_point(5, 0.15, 100);
+        follower.a_un_point(2, 0.15, 100);
 
 
         //SwagBot robot = new SwagBot(MotorPort.B, MotorPort.C, SensorPort.S2, SensorPort.S3, SensorPort.S1);
