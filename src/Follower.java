@@ -25,6 +25,7 @@ public class Follower {
 
     public void ecrire_statistiques(double distance, int vitesse) {
         file.println(distance + "," + vitesse);
+        file.flush();
     }
 
     public void tout_ou_rien() {
