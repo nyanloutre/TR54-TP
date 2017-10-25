@@ -24,12 +24,12 @@ public class SwagBot{
     private float max_speed;
 
     public SwagBot(Port port_motor_A, Port port_motor_B, Port port_ultrasonic, Port port_color_sensor, Port port_button_sensor) {
-        new SwagBot(port_motor_A, port_motor_B, port_ultrasonic,port_button_sensor);
+        this(port_motor_A, port_motor_B, port_ultrasonic,port_button_sensor);
         this.color_sensor = new EV3ColorSensor(port_color_sensor);
     }
 
     public SwagBot(Port port_motor_A, Port port_motor_B, Port port_ultrasonic, Port port_button_sensor) {
-        new SwagBot(port_motor_A,port_motor_B);
+        this(port_motor_A,port_motor_B);
         this.ultrasonic = new EV3UltrasonicSensor(port_ultrasonic);
         this.ultrasonic_provider = this.ultrasonic.getDistanceMode();
         this.button_sensor = new EV3TouchSensor(port_button_sensor);
@@ -38,7 +38,7 @@ public class SwagBot{
 
     public SwagBot(Port port_motor_A, Port port_motor_B) {
         this.moteur_gauche = new EV3LargeRegulatedMotor(port_motor_A);
-        max_speed = this.moteur_gauche.getMaxSpeed();
+        this.max_speed = this.moteur_gauche.getMaxSpeed();
         this.moteur_droite = new EV3LargeRegulatedMotor(port_motor_B);
     }
 
