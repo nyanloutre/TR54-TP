@@ -11,8 +11,8 @@ import lejos.utility.Delay;
 
 public class SwagBot{
 
-    private RegulatedMotor motorA;
-    private RegulatedMotor motorB;
+    private RegulatedMotor moteur_gauche;
+    private RegulatedMotor moteur_droite;
     private EV3UltrasonicSensor ultrasonic;
     private SampleProvider ultrasonic_provider;
     private EV3ColorSensor color_sensor;
@@ -37,16 +37,16 @@ public class SwagBot{
 
 
     public SwagBot(Port port_motor_A, Port port_motor_B) {
-        this.motorA = new EV3LargeRegulatedMotor(port_motor_A);
-        max_speed = this.motorA.getMaxSpeed();
-        this.motorB = new EV3LargeRegulatedMotor(port_motor_B);
+        this.moteur_gauche = new EV3LargeRegulatedMotor(port_motor_A);
+        max_speed = this.moteur_gauche.getMaxSpeed();
+        this.moteur_droite = new EV3LargeRegulatedMotor(port_motor_B);
     }
 
     protected void finalize() throws Throwable {
         super.finalize();
 
-        this.motorA.close();
-        this.motorB.close();
+        this.moteur_gauche.close();
+        this.moteur_droite.close();
         this.ultrasonic.close();
         this.color_sensor.close();
     }
@@ -60,26 +60,26 @@ public class SwagBot{
     }
 
     public void stop() {
-        this.motorA.stop(true);
-        this.motorB.stop();
+        this.moteur_gauche.stop(true);
+        this.moteur_droite.stop();
     }
 
     public void rotate(float angle) {
         int deg_angle = (int)((180.0/Math.PI)*angle) * 2;
-        this.motorA.rotate(deg_angle, true);
-        this.motorB.rotate(-deg_angle);
+        this.moteur_gauche.rotate(deg_angle, true);
+        this.moteur_droite.rotate(-deg_angle);
     }
 
     public void forward() {
-        this.motorA.forward();
-        this.motorB.forward();
+        this.moteur_gauche.forward();
+        this.moteur_droite.forward();
     }
 
     public void speed(int speed_left, int speed_right){
-        this.motorA.setSpeed(speed_left);
-        this.motorA.forward();
-        this.motorB.setSpeed(speed_right);
-        this.motorB.forward();
+        this.moteur_gauche.setSpeed(speed_left);
+        this.moteur_gauche.forward();
+        this.moteur_droite.setSpeed(speed_right);
+        this.moteur_droite.forward();
     }
 
     public float distance() {
